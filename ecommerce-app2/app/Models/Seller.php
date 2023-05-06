@@ -23,5 +23,11 @@ class Seller extends Authenticatable
     protected $hidden = [
         'password' ,
     ];
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
     
 }

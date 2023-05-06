@@ -7,6 +7,22 @@
             <div class="card">
                 <div class="card-header">Seller Register</div>
 
+                    @if (session('success'))
+                        <span class="alert alert-info" role="alert" >
+                            <strong>{{ session('success') }}</strong>
+                        </span>
+                    @endif
+                    @if (session('fail'))
+                        <span class="alert alert-danger" role="alert" >
+                            <strong>{{ session('fail') }}</strong>
+                        </span>
+                    @endif
+                    @if (session('exist'))
+                        <span class="alert alert-danger" role="alert" >
+                            <strong>{{ session('exist') }}</strong>
+                        </span>
+                    @endif
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('seller_register') }}">
                         @csrf

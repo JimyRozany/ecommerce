@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Seller\Auth\AuthController;
-// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Seller\Auth\AuthController;
+use App\Http\Controllers\Seller\Product\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,8 @@ Route::prefix('seller')->group(function(){
     Route::middleware('auth:seller')->group(function(){
         Route::get('dashboard' ,[AuthController::class ,'dashboard'])->name('seller_dashboard');
 
+    /* =============== product routes =============== */
+        Route::resource('product', ProductController::class);
     });
     
 });

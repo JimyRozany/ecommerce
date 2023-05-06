@@ -33,7 +33,7 @@ class AuthController extends Controller
                 $user = Auth::guard('seller')->user();
                 return redirect()
                     ->route('seller_dashboard')
-                    // ->with('success','logged in successfully')
+                    ->with('success','logged in successfully')
                     ->with(compact('user'));
             }else{
                 return redirect()->back()->with('fail' , 'email and password  not matching');
@@ -60,6 +60,12 @@ class AuthController extends Controller
             'phone' => 'required|numeric',
             'address' => 'required',
         ]);
+        // Check email does not already exist
+        $exist = Seller::where('email','=',$request->input('email'))->first();
+        if($exist)
+        {
+            return back()->with('exist' ,"email already exist " . '"' . $request->input('email') . '"');
+        }
 
         //store data to table seller
 

@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name', 'E-Commerce') }}</title>
 
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
      <!-- Scripts -->
      @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -84,5 +87,9 @@
         @yield('content')
 
     </div>
+    
+
+    {{-- scripts  --}}
+    @yield('script')
 </body>
 </html>
