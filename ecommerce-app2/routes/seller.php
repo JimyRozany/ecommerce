@@ -21,7 +21,7 @@ Route::prefix('seller')->group(function(){
 
     /* =============== Auth =============== */
     Route::middleware('guest:seller')->group(function(){
-        Route::get('register' ,[AuthController::class ,'showRegister']);
+        Route::get('register' ,[AuthController::class ,'showRegister'])->name('show_register');
         Route::post('register' ,[AuthController::class ,'register'])->name('seller_register');    
         
         Route::get('login' ,[AuthController::class ,'showLogin'])->name('show_login');

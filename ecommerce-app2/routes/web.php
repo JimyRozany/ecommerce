@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Seller\Auth\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -15,18 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+/* ========= user auth ============  */
 Auth::routes();
+/* ========= end user auth ============  */
+Route::get('/' ,[HomeController::class ,'index']);
 
+Route::get('show/{product}' ,[HomeController::class ,'showProduct'])->name('show_product');
+Route::post('search' ,[HomeController::class ,'handleSearch'])->name('handle_search');
 
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-Route::get('what' ,function(){
-    return Auth::guard('seller')->user();
-});

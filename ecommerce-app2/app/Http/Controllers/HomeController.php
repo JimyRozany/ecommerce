@@ -2,27 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    // Show all products to anyone
     public function index()
     {
-        return view('home');
+        $products = Product::latest()->paginate(2); 
+        return view('home')->with('products' ,$products);
+    }
+    // Show one product to anyone
+    public function showProduct(Product $product)
+    {
+        // return $product;
+        return view('show' ,compact('product'));
+    }
+
+    // hadle search
+    public function handleSearch(Request $request)
+    {
+        $search_key = $request->input('search_key');
+
+        $results = Product::where('name' ,'like','%'. $search_key .'%')->
+                    orWhere('description' ,'like','%'. $search_key .'%')->get();
+
+        return view('search_result' ,compact('results' ,'search_key'));
     }
 }
