@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\User\CartController;
-use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +36,12 @@ Route::middleware('auth:user')->group(function(){
     Route::get('add-to-cart/{product}' ,[CartController::class ,'addToCart'])->name('add.to.cart');
     Route::post('change-quantity' ,[CartController::class ,'changeQuantity'])->name('change.quantity');
     Route::get('remove-item/{cart_id}' ,[CartController::class ,'removeItem'])->name('remove.item.cart');
-  
-
     /* ========= end Routes Cart ============  */
+
+    /* ========= Routes CheckOut ============  */
+    Route::get('checkout',[StripePaymentController::class,'checkout'])->name('checkout');
+    Route::get('checkout-success',[StripePaymentController::class,'success'])->name('checkout.success');
+    Route::get('checkout-cancel',[StripePaymentController::class,'cancel'])->name('checkout.cancel');
+    /* ========= end Routes CheckOut ============  */
 });
 
-/* ========= Routes buying ============  */
-
-/* ========= end Routes buying ============  */

@@ -27,6 +27,7 @@
             <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
+                    {{-- {{ dd($productsCart) }} --}}
                     @foreach ($productsCart as $item)
                     <div class="row">
                         <div class="col-md-6">
@@ -82,7 +83,14 @@
                   
                     <div class="d-flex justify-content-between align-items-center">
                         <strong>total Price : $  {{ $totalPrice }}</strong>
-                        <div class="btn btn-outline-success">checkout</div>
+                        <div class="btn btn-outline-success">
+                            <a href="{{ route('checkout') }}">Ckeckout</a>
+                            {{-- <form action="{{ route('checkout')}}" method="post" data-stripe-publishable-key = "{{ env('STRIPE_KEY') }}">
+                                @csrf
+                                <input type="hidden" value="{{ $productsCart }}" name="productsCart">
+                                <button>Checkout</button>
+                            </form> --}}
+                        </div>
                     </div>
                     <hr class="py-3 ">   
                 </div>
