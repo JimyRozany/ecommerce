@@ -32,7 +32,7 @@
                                 <span class="text-success h4"> $</span>
                                     
                             </p>
-                            <a href="#" class="btn btn-outline-primary">Buy</a>
+                            <a href="{{ route('add.to.cart' ,$product) }}" class="btn btn-outline-primary">Buy</a>
                             <a href="{{ route('show_product' ,$product) }}" class="btn btn-outline-success">Show more</a>
                             
                         </div>

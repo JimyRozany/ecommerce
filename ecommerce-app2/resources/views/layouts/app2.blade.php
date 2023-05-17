@@ -16,7 +16,7 @@
     {{-- nav --}}
     <div class="navbar navbar-expand-sm bg-dark navbar-dark text-white fixed-top">
         <div class="container">
-            <a href="#" class="navbar-brand">App Logo</a>
+            <a href="{{ url('/') }}" class="navbar-brand">App Logo</a>
 
             <button 
                 class="navbar-toggler" 
@@ -28,33 +28,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
-                    @guest
-                        @if (Request::url() === 'http://127.0.0.1:8000/login' || Request::url() === 'http://127.0.0.1:8000/register' || Request::url() === 'http://127.0.0.1:8000/seller/login' || Request::url() === 'http://127.0.0.1:8000/seller/register')
-                            <li class="nav-item">
-
-                            </li>
-                            @else
-                                <li class="nav-item">
-                                    <form 
-                                        action="{{ route('handle_search') }}"
-                                        method="POST"
-                                        class="d-flex">
-                                        @csrf
-                                        <input 
-                                            class="form-control me-2" 
-                                            type="search" 
-                                            placeholder="Search" 
-                                            aria-label="Search"
-                                            name="search_key">
-
-                                        <button class="btn btn-outline-success" type="submit">Search</button>
-                                    </form>
-                                </li>
-                        @endif
-                    @endguest
                     
-                    @if (auth('seller' ,'user')->user())
-                        <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <form 
+                            action="{{ route('handle_search') }}"
+                            method="POST"
+                            class="d-flex">
+                            @csrf
+                            <input 
+                                class="form-control me-2" 
+                                type="search" 
+                                placeholder="Search" 
+                                aria-label="Search"
+                                name="search_key">
+
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </li>
+
+
+                   {{-- new code  --}}
+
+                    @if(Auth::guard('seller')->check())
+                        <li class="nav-item dropdown">            
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ Auth::guard('seller')->user()->name }}</a>
                             <ul class="dropdown-menu bg-dark">
                                 <li><a href="#" class="dropdown-item nav-link">Profile</a></li>
@@ -66,23 +62,46 @@
                                 </li>
                             </ul>
                         </li> 
-                    @else
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="{{ route('login') }}" class="nav-link">Login</a>
-                            <a href="{{ route('register') }}"class="nav-link">Register</a>
-                        </div>
+                    @elseif(Auth::guard('user')->check())
+                        <li class="nav-item dropdown">            
+                            <a href="#" class="nav-link dropdown-toggle d-inline-block" data-bs-toggle="dropdown">{{ auth('user')->user()->name }}</a>
+                            <ul class="dropdown-menu bg-dark">
+                                <li><a href="#" class="nav-link">Profile</a></li>
+                                <li class="d-flex align-items-center">
+                                    <a href="{{ route('cart') }}" class="nav-link">Cart</a>
+                                    @if (!auth()->user()->cart()->count() == 0)
+                                        <span class="text-light fw-bold bg-primary p-2 px-3 rounded-circle">{{ auth()->user()->cart()->count() }}</span>
+                                    @endif  
+                                </li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post" class="p-0 nav-link">
+                                        @csrf
+                                        <button class=" border-0 bg-transparent nav-link " type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li> 
+                        @else
+
+                        <a href="{{ route('login') }}" class="nav-link">Login</a>
+                        <a href="{{ route('register') }}" class="nav-link">Register</a>
                         
                     @endif
+                   
+                   {{-- end new code  --}}
+
               
                 </ul>
             </div>
         </div>
     </div>
+    
       {{-- content section  --}}
     <div class="container py-4">
        
         @yield('content')
 
+        
     </div>
     
 

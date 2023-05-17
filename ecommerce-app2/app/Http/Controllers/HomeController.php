@@ -31,4 +31,7 @@ class HomeController extends Controller
 
         return view('search_result' ,compact('results' ,'search_key'));
     }
+    
+    
+    
 }
