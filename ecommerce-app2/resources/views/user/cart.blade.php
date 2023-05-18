@@ -81,18 +81,70 @@
                     <hr class="py-3 ">
                     @endforeach
                   
-                    <div class="d-flex justify-content-between align-items-center">
-                        <strong>total Price : $  {{ $totalPrice }}</strong>
-                        <div class="btn btn-outline-success">
-                            <a href="{{ route('checkout') }}">Ckeckout</a>
-                            {{-- <form action="{{ route('checkout')}}" method="post" data-stripe-publishable-key = "{{ env('STRIPE_KEY') }}">
+                    <div class="d-flex  ">
+                        <div class="w-50">
+                            <strong>total Price : $  {{ $totalPrice }}</strong>
+
+                        </div>
+                        <div class="vr mx-3"></div>
+                        <div class="">
+                            {{-- <a href="{{ route('checkout') }}">Ckeckout</a> --}}
+                            {{-- data-stripe-publishable-key = "{{ env('STRIPE_KEY') }}" --}}
+                            <form action="{{ route('checkout')}}" method="POST">
                                 @csrf
-                                <input type="hidden" value="{{ $productsCart }}" name="productsCart">
-                                <button>Checkout</button>
-                            </form> --}}
+                                <input class="form-control my-2 @error("first_name") is-invalid @enderror" type="text" name="first_name" placeholder="First Name"  >
+                                @error('first_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("last_name") is-invalid @enderror" type="text" name="last_name" placeholder="Last Name"  >
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("line_1") is-invalid @enderror" type="text" name="line_1" placeholder="line 1"  >
+                                @error('line_1')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("line_2") is-invalid @enderror" type="text" name="line_2" placeholder="line 2">
+                                @error('line_2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("province") is-invalid @enderror" type="text" name="province" placeholder="Province"  >
+                                @error('province')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("city") is-invalid @enderror" type="text" name="city" placeholder="City"  >
+                                @error('city')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("phone_1") is-invalid @enderror" type="number" name="phone_1" placeholder="Phone 1"  >
+                                @error('phone_1')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <input class="form-control my-2 @error("phone_2     ") is-invalid @enderror" type="number" name="phone_2" placeholder="Phone 2">
+                                @error('phone_2')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                <button class="btn btn-primary ">Checkout</button>
+                            </form>
                         </div>
                     </div>
-                    <hr class="py-3 ">   
+                    {{-- <hr class="py-3 ">    --}}
                 </div>
             </div>   
         </div>

@@ -160,5 +160,7 @@
                 preview.src = URL.createObjectURL(file)
             }
         }
+
+       
     </script>
 @endsection

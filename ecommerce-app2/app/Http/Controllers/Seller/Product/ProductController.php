@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class ProductController extends Controller
 {
     // Get all products from the seller
@@ -58,7 +58,8 @@ class ProductController extends Controller
             'image_path' => 'seller/image/product/' . $newImageName ,
 
         ]);
-        return back()->with('success' ,'Product added successfully');
+        Alert::success('success','Product created successfully');
+        return redirect()->back();
 
        
     }

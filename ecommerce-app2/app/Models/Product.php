@@ -25,4 +25,9 @@ class Product extends Model
        return $this->belongsTo(Seller::class);
     }
 
+    public function sales()
+    {
+       return $this->hasMany(Sales::class);
+    }
+
 }

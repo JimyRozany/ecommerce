@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Sales;
+use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -39,9 +41,11 @@ Route::middleware('auth:user')->group(function(){
     /* ========= end Routes Cart ============  */
 
     /* ========= Routes CheckOut ============  */
-    Route::get('checkout',[StripePaymentController::class,'checkout'])->name('checkout');
+    Route::post('checkout',[StripePaymentController::class,'checkout'])->name('checkout');
     Route::get('checkout-success',[StripePaymentController::class,'success'])->name('checkout.success');
     Route::get('checkout-cancel',[StripePaymentController::class,'cancel'])->name('checkout.cancel');
     /* ========= end Routes CheckOut ============  */
 });
+
+
 
