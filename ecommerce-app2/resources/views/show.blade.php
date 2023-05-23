@@ -27,26 +27,28 @@
                 <p >{{ $product->description }}</p>
 
             </div>
-            @auth
-                @if (auth('seller')->user()->id == $product->seller_id)
+                @auth('seller')
+                    @if (auth('seller')->user()->id == $product->seller_id)
 
                     <div class="fw-bold text-mute">
-                        Status : {{ $product->status ? 'publised' : 'draft' }}
+                    Status : {{ $product->status ? 'publised' : 'draft' }}
                     </div>
                     <div class="py-2">
-                        <a href="{{ route('product.edit' ,$product) }}" class="btn btn-primary">Edit</a>
-                        <a href="{{ route('product.destroy' ,$product) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ route('product.edit' ,$product) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('product.destroy' ,$product) }}" class="btn btn-danger">Delete</a>
                     </div>
-        
-                @endif
-                @else
-                        <a href="#" class="btn btn-success">buy</a>
-            @endauth
+
+                    @endif
+                @endauth
+                @guest('seller')
+                    <a href="{{ route('add.to.cart' ,$product->id) }}" class="btn btn-success">buy</a>
+                @endguest
+                
 
            
         </div>
-        <div class="">
-            <img src="{{ asset($product->image_path) }}" alt="product image" width="500px">
+        <div class=""style="width:500px ; ">
+            <img src="{{ asset($product->image_path) }}" alt="product image"  style="width: 50%;">
         </div>
     </div>
 </div>
