@@ -4,13 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Auth\Authenticatable;
 // use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Foundation\Auth\User as Authenticatable; // from user model 
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable; // from user model
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Seller extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -29,5 +30,5 @@ class Seller extends Authenticatable
     {
         return $this->hasMany(Product::class);
     }
-    
+
 }

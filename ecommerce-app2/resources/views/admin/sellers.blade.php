@@ -4,10 +4,10 @@
    <div class="container">
     <form action="{{ route('search.in.sellers') }}" method="POST" class="w-25 d-flex m-2">
         @csrf
-        <input 
-            type="text" 
-            placeholder="Search" 
-            class="form-control border-none mr-2 @error('search_key') is-invalid @enderror" 
+        <input
+            type="text"
+            placeholder="Search"
+            class="form-control border-none mr-2 @error('search_key') is-invalid @enderror"
             name="search_key">
         @error('search_key')
             <span class="invalid-feedback" role="alert">
@@ -15,12 +15,12 @@
             </span>
         @enderror
         <button
-            type="submit" 
+            type="submit"
             class="btn btn-secondary rounded-circle py-2">
             Go
         </button>
     </form>
-    
+       <a href="{{route('seller.trash')}}" class="btn btn-outline-secondary"> Trash </a>
     <table class="table">
         <thead>
             <tr>
@@ -41,8 +41,8 @@
                     <td>{{ $seller->address }}</td>
                     <td>{{ $seller->phone }}</td>
                     <td>
-                        {{-- <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger">Delete</a> --}}
+                        <a href="{{ route('ban.seller', $seller->id) }}" class="btn btn-outline-secondary">Ban</a>
+{{--                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger">Delete</a>--}}
                     </td>
                 </tr>
                 @endforeach

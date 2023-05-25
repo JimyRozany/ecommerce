@@ -46,8 +46,3 @@ Route::middleware('auth:user')->group(function(){
     /* ========= end Routes CheckOut ============  */
 });
 
-/* ========= test for github from phpstorm ============  */
-
-Route::get('bla',function (){
-    return 'bla';
-});

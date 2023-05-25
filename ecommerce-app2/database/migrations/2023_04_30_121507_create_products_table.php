@@ -19,9 +19,9 @@ return new class extends Migration
             $table->text('description');
             $table->integer('quantity'); // quantity in stock
             $table->boolean('status'); // publish or draft
-            $table->decimal('price'); 
-            $table->string('image_path'); // product image  
-
+            $table->decimal('price');
+            $table->string('image_path'); // product image
+            $table->softDeletes(); // hidden  post
             $table->timestamps();
 
             $table->foreign('seller_id')

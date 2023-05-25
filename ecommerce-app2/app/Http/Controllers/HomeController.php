@@ -11,7 +11,7 @@ class HomeController extends Controller
     // Show all products to anyone
     public function index()
     {
-        $products = Product::latest()->paginate(2); 
+        $products = Product::withoutTrashed()->latest()->paginate(2);
         return view('home')->with('products' ,$products);
     }
     // Show one product to anyone
@@ -31,7 +31,7 @@ class HomeController extends Controller
 
         return view('search_result' ,compact('results' ,'search_key'));
     }
-    
-    
-    
+
+
+
 }

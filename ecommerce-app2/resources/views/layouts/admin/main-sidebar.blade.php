@@ -41,7 +41,7 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('all.sellers') }}" class="nav-link">
-            <i class="fa-solid fa-people-roof pr-3"></i>
+              <i class="fa-solid fa-store"></i>
             <p class="">Sellers</p>
           </a>
         </li>
@@ -52,8 +52,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('all.products') }}" class="nav-link">
+              <i class="fa-brands fa-product-hunt"></i>
+            <p class="">products</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="logout" class="nav-link">
-            <i class="fa-solid fa-door-open pr-3"></i>
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <p class="">Logout</p>
           </a>
         </li>
