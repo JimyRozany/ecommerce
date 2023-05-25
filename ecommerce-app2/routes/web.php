@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Sales;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +26,9 @@ Auth::routes();
 /* ========= end user auth ============  */
 
 /* ========= Public Routes ============  */
-Route::get('/' ,[HomeController::class ,'index']); // home page 
+Route::get('/' ,[HomeController::class ,'index']); // home page
 Route::get('show/{product}' ,[HomeController::class ,'showProduct'])->name('show_product'); // show one products (more details)
-Route::post('search' ,[HomeController::class ,'handleSearch'])->name('handle_search'); // search about products 
+Route::post('search' ,[HomeController::class ,'handleSearch'])->name('handle_search'); // search about products
 /* ========= end Public Routes ============  */
 
 Route::middleware('auth:user')->group(function(){
@@ -47,5 +46,8 @@ Route::middleware('auth:user')->group(function(){
     /* ========= end Routes CheckOut ============  */
 });
 
+/* ========= test for github from phpstorm ============  */
 
-
+Route::get('bla',function (){
+    return 'bla';
+});
